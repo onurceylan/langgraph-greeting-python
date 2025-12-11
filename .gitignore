@@ -1,0 +1,7 @@
+# .gitignore içeriği
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+.uv/
