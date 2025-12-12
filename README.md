@@ -12,15 +12,17 @@ A simple greeting agent built with LangGraph that accepts a user's name and retu
 - ✅ Fast dependency management with uv
 
 ## Project Structure
+```tree
 LANGGRAPH-GREETING-PYTHON/
-├── .dev-history.md
-├── .gitignore
-├── .python-version
-├── main.py
-├── pyproject.toml
-├── README.md
-├── test_greeting.py
-└── uv.lock
+    ├── .dev-history.md
+    ├── .gitignore
+    ├── .python-version
+    ├── main.py
+    ├── pyproject.toml
+    ├── README.md
+    ├── test_greeting.py
+    └── uv.lock
+```
 
 ## Prerequisites
 
