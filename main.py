@@ -1,6 +1,13 @@
 from typing import TypedDict
 from langgraph.graph import StateGraph, START, END
 
+# Load environment variables (optional - only if .env file exists)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 # State şeması
 class GreetingState(TypedDict):
     name: str
