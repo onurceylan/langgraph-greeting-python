@@ -4,7 +4,7 @@ Simple greeting agent using LangGraph without LLM.
 
 ## Setup
 ```bash
-# Install uv
+# Install uv - if it is not working use in bash or pip
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Install dependencies
