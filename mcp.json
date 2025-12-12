@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "langgraph": {
+      "command": "langgraph",
+      "args": ["dev"],
+      "disabled": false
+    }
+  }
+}
