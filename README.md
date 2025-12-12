@@ -14,14 +14,14 @@ A simple greeting agent built with LangGraph that accepts a user's name and retu
 ## Project Structure
 ```tree
 LANGGRAPH-GREETING-PYTHON/
-    ├── .dev-history.md
-    ├── .gitignore
-    ├── .python-version
-    ├── main.py
-    ├── pyproject.toml
-    ├── README.md
-    ├── test_greeting.py
-    └── uv.lock
+├── .dev-history.md
+├── .gitignore
+├── .python-version
+├── main.py
+├── pyproject.toml
+├── README.md
+├── test_greeting.py
+└── uv.lock
 ```
 
 ## Prerequisites
@@ -47,6 +47,115 @@ uv sync
 ```
 
 This will create a .venv virtual environment, install langgraph and install pytest (dev dependency).
+
+## Bonus Points Implementation
+
+### 1️⃣ LangGraph MCP Server Configuration
+
+This project includes a `mcp.json` configuration file for IDE integration:
+
+```json
+{
+  "mcpServers": {
+    "langgraph": {
+      "command": "langgraph",
+      "args": ["dev"],
+      "disabled": false
+    }
+  }
+}
+```
+
+This configuration enables:
+- IDE-integrated LangGraph development
+- Real-time graph visualization
+- Seamless debugging experience
+
+### 2️⃣ LangSmith Integration
+
+#### Setup LangSmith Account
+
+1. Create a free account at https://smith.langchain.com/
+2. Navigate to Settings → API Keys
+3. Copy your API key
+
+#### Configure Environment Variables
+
+Copy `.env.example` to `.env` and add your API key:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your LangSmith credentials:
+
+```env
+LANGCHAIN_TRACING_V2=true
+LANGCHAIN_API_KEY=your_api_key_from_smith_langchain
+LANGCHAIN_PROJECT=langgraph-greeting
+```
+
+#### Verify with langgraph dev
+
+Once configured, run the interactive development server:
+
+```bash
+uv run langgraph dev
+```
+
+This command:
+- Starts a local development server
+- Enables interactive graph visualization
+- Shows real-time execution traces
+- Displays state changes at each node
+
+**Screenshot of LangSmith Graph Visualization:**
+
+The graph visualization shows the simple three-step flow:
+
+```
+┌─────────┐
+│  START  │
+└────┬────┘
+     │
+     ▼
+┌──────────────┐
+│ greeting_node│
+└────┬─────────┘
+     │
+     ▼
+┌─────────┐
+│   END   │
+└─────────┘
+```
+
+When you run `langgraph dev` and invoke the graph with a name, you'll see in LangSmith:
+- Input state with the name parameter
+- Node execution and state transitions
+- Final output with the generated greeting
+- Complete execution trace and timing information
+
+### 3️⃣ Comprehensive Unit Tests
+
+The project includes multiple unit tests that verify the greeting output:
+
+```python
+pytest
+```
+
+**Test Coverage:**
+- ✅ `test_greeting_basic()` - Verifies basic greeting format
+- ✅ `test_greeting_multiple_names()` - Tests multiple input names
+- ✅ `test_greeting_node_directly()` - Direct node function testing
+- ✅ `test_greeting_output_format()` - Validates exact output format
+- ✅ `test_greeting_empty_name()` - Edge case testing
+- ✅ `test_graph_state_preservation()` - Ensures state integrity
+
+Run tests with coverage:
+
+```bash
+uv run pytest -v
+```
 
 ## Usage 
 ### Run the agent
